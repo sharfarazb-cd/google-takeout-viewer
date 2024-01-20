@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
     <title>Google Takeout Viewer</title>
 </head>
 <body>
@@ -16,8 +17,7 @@
         <p class="creator">{{ message.creator.name }} </p>
         <p>{{ message.text }}</p>
         {% if message.attached_files %}
-                <p>Attached Files:</p>
-                <p class="created-date"> Copy link address and paste in a new tab to view attachment. </p>
+                <p class="created-date">Attached Files: Right click -> Copy link address, and paste in a new tab to view attachment. </p>
                 <ul>
                     {% for file in message.attached_files %}
                        <li><a href="file:///{{ path }}/{{ file.export_name }}" target="_blank">{{ file.original_name }}</a></li>

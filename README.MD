@@ -10,6 +10,21 @@ In `app.py`, `BASE_PATH` and `USER_EMAIL` should be updated before you run the a
 BASE_PATH = "C:\\Users\\John\\Documents\\Takeout\\Google Chat\\Groups"
 USER_EMAIL = "johnd@gmail.com"
 ```
+## Run
+
+1. Download the zip of the master branch and extract it to a folder. 
+2. Open the app.py and make the required changes.
+3. Install latest version of Python for your OS.
+4. Execute the below commands.
+
+```commandline
+python -m venv venv
+venv\Scripts\activate
+pip install flask
+flask run
+```
+You can view the chat history by navigating to http://localhost:5000/ on your web browser.
+
 
 ## Limitations:
 
