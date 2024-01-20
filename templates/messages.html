@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Google Takeout Viewer</title>
+</head>
+<body>
+<h1>Chat history</h1>
+{% for message in data.messages %}
+{% if message.message_state != 'DELETED' %}
+<div class="message {% if user_email in message.creator.email %}right{% else %}left{% endif %}">
+    <div class="bubble">
+        <p class="creator">{{ message.creator.name }} </p>
+        <p>{{ message.text }}</p>
+        {% if message.attached_files %}
+                <p>Attached Files:</p>
+                <p class="created-date"> Copy link address and paste in a new tab to view attachment. </p>
+                <ul>
+                    {% for file in message.attached_files %}
+                       <li><a href="file:///{{ path }}/{{ file.export_name }}" target="_blank">{{ file.original_name }}</a></li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+        <p class="created-date"> {{ message.created_date }}</p>
+    </div>
+</div>
+{% else %}
+<div class="message right">
+    <div class="bubble">
+        <p>This message is deleted</p>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+</body>
+</html>
